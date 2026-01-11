@@ -42,3 +42,12 @@ history = model.fit(X_train_scaled, Y_train, epochs=1000, batch_size=32, validat
 # 7. Evaluation
 loss, accuracy = model.evaluate(X_test_scaled, Y_test)
 print(f"Loss: {loss:.3f}, Accuracy: {accuracy*100:.2f}%")
+
+train_loss = history.history["loss"]
+test_loss = history.history["val_loss"]
+plt.plot(range(1, len(train_loss)+1), train_loss, color="blue", label="train loss")
+plt.plot(range(1, len(test_loss)+1), test_loss, color="orange", label="test loss")
+plt.xlabel("epochs")
+plt.ylabel("loss (sparse cross entropy)")
+plt.legend()
+plt.show()
